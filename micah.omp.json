@@ -12,10 +12,7 @@
         {
           "type": "session",
           "style": "powerline",
-          "template": " {{if .SSHSession}}\ud83d\udce1{{else}}\uf108{{end}} {{ .UserName }}@{{ .HostName }} ",
-          "options": {
-            "ssh_icon": "\ud83d\udce1"
-          },
+          "template": " {{if .SSHSession}}\uf0c2{{else}}\uf108{{end}} {{ .UserName }}@{{ .HostName }} ",
           "leading_powerline_symbol": "",
           "powerline_symbol": "",
           "foreground": "#000000",
