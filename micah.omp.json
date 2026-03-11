@@ -3,7 +3,6 @@
   "version": 3,
   "final_space": true,
   "console_title_template": "{{ .Shell }} in {{ .Folder }}",
-  "async": true,
   "blocks": [
     {
       "type": "prompt",
