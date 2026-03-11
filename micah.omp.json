@@ -10,6 +10,14 @@
       "alignment": "left",
       "segments": [
         {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": "{{if .SSHSession}}\uf0ac{{else}}\uf108{{end}} {{ .UserName }}@{{ .HostName }} ",
+          "foreground": "#000000",
+          "background": "#ffa028"
+        },
+        {
           "type": "path",
           "style": "powerline",
           "foreground": "#ffffff",
