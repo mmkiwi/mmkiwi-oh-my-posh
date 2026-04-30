@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 3
+final_space: true
+console_title_template: '{{ .Shell }} in {{ .Folder }}'
+shell_integration: true
+palette:
+  HostColor: '#FFFFFF'
+palettes:
+  template: '{{.HostName | lower}}'
+  list:
+    "unilte-xxx":
+      HostColor: '#EF8F8F'
+    "aquarius":
+      HostColor:  '#EFEF8F'
+    nginx:
+      HostColor:  '#8FEF8F'
+    "superfreak.lan.mmkiwi.com":
+      HostColor:  '#8FEFEF'
+    pve:
+      HostColor:  '#8F8FEF'
+    micropi:
+      HostColor:  '#EF8FEF'
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: session
+        style: powerline
+        template: ' {{if .SSHSession}}{{else}}{{end}} {{ .UserName }}@{{ .HostName }} '
+        leading_powerline_symbol: ''
+        powerline_symbol: ''
+        foreground: '#000000'
+        background: p:HostColor
+        cache:
+          duration: 24h
+          strategy: session
+        background_templates:
+          - '{{ if .Root}}#aa0000{{end}}'
+        foreground_templates:
+          - '{{ if .Root}}#ffffff{{end}}'
+      - type: path
+        style: powerline
+        foreground: '#ffffff'
+        background: '#ff479c'
+        template: '  {{ .Path }} '
+        leading_powerline_symbol: 
+        powerline_symbol: 
+        options:
+          folder_separator_icon: '  '
+          home_icon: '~'
+          max_width: 20
+          style: agnoster
+      - type: git
+        style: powerline
+        foreground: '#193549'
+        background: '#71eaff'
+        background_templates:
+          - '{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}'
+          - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}'
+          - '{{ if gt .Ahead 0 }}#B388FF{{ end }}'
+          - '{{ if gt .Behind 0 }}#B388FF{{ end }}'
+        template: ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+        powerline_symbol: 
+        options:
+          branch_max_length: 25
+          fetch_stash_count: true
+          fetch_status: true
+          fetch_upstream_icon: true
+      - type: python
+        style: powerline
+        foreground: '#111111'
+        background: '#FFDE57'
+        template: '  {{ .Venv }}{{ if .Error }}{{ .Error }}{{ else }} {{ .Major }}.{{ .Minor }}{{ end }} '
+        powerline_symbol: 
+        options:
+          cache_duration: none
+          display_mode: files
+          fetch_virtual_env: false
+      - type: dotnet
+        style: powerline
+        powerline_symbol: 
+        template: ' .NET {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }} '
+        foreground: '#ffffff'
+        background: '#444444'
+      - type: root
+        style: powerline
+        foreground: '#111111'
+        background: '#ffff66'
+        template: '  '
+        powerline_symbol: 
+        options:
+          cache_duration: none
+      - type: executiontime
+        style: powerline
+        foreground: '#ffffff'
+        background: '#83769c'
+        powerline_symbol: 
+        template: '  {{ .FormattedMs }} '
+        options:
+          always_enabled: true
+          cache_duration: none
+      - type: status
+        style: powerline
+        powerline_symbol: 
+        template: ' {{ if eq .Code 0 }}{{ else }}{{ end }} '
+        foreground: '#ffffff'
+        background: '#444444'
+  - type: rprompt
+    segments: []
