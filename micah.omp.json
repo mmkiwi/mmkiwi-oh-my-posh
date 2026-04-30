@@ -20,7 +20,13 @@
           "cache": {
             "duration": "24h",
             "strategy": "session"
-          }
+          },
+          "background_templates": [
+            "{{ if .Root}}#aa0000{{end}}"
+          ],
+          "foreground_templates": [
+            "{{ if .Root}}#ffffff{{end}}"
+          ]
         },
         {
           "type": "path",
